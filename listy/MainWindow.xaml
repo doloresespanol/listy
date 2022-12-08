@@ -93,7 +93,6 @@
             </TabItem>
             <TabItem Header="DataGrind">
                 <DataGrid ItemsSource="{Binding WszystkieFilmy}" AutoGenerateColumns="False" IsReadOnly="False"
-                          AddingNewItem="True"
                           AllowDrop="True">
                     <DataGrid.Columns>
                     <DataGridTextColumn Header="Tytuł filmu" Binding="{Binding Nazwa}"/>
