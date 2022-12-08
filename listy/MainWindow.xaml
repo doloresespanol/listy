@@ -1,0 +1,108 @@
+﻿<Window x:Class="listy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:listy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl SelectedIndex="2"
+                    TabStripPlacement="Top"
+                    BorderThickness="10"
+                    BorderBrush="Bisque">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="20" Width="20" Fill="Brown"></Rectangle>
+                        <Label>ContextControl</Label>
+                    </StackPanel>
+                </TabItem.Header>
+                <ItemsControl>
+                    <Label>Text</Label>
+                    <Label>Text</Label>
+                    <Label>Text</Label>
+                    <Label>Text</Label>
+                    <Button>button</Button>
+                    <Button>button</Button>
+                    <Button>button</Button>
+                    <StackPanel>
+                        <TextBlock>Text</TextBlock>
+                    </StackPanel>
+                </ItemsControl>
+            </TabItem>
+            <TabItem Header="ContextControl2">
+                <ItemsControl ItemsSource="{Binding WszystkieFilmy}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Nazwa}"/>
+                                <Label Content="{Binding Ocena}"/>
+                                <Label Content="{Binding Opis}"/>
+                                <Label Content="{Binding Gatunek}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </TabItem>
+            <TabItem Header="ListBox">
+                <ListBox ItemsSource="{Binding WszystkieFilmy}">
+                    <!--list box pasek przewijania i elementy "klikalne" -->
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Nazwa}"/>
+                                <Label Content="{Binding Ocena}"/>
+                                <Label Content="{Binding Opis}"/>
+                                <Label Content="{Binding Gatunek}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="ListView">
+                <StackPanel>
+                    <ListView ItemsSource="{Binding WszystkieFilmy}"
+                          SelectedItem="{Binding ZaznaczonyFilm}">
+                       <!-- <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Nazwa}"/>
+                                    <Label Content="{Binding Ocena}"/>
+                                    <Label Content="{Binding Opis}"/>
+                                    <Label Content="{Binding Gatunek}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate> -->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Nazwa}"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Ocena}"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Opis}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Click="Pokaz">Pokaż</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="ListView2">
+                <ListViewItem>
+                    <Label Content="Cokolwiek"></Label>
+                </ListViewItem>
+                
+            </TabItem>
+            <TabItem Header="DataGrind">
+                <DataGrid ItemsSource="{Binding WszystkieFilmy}" AutoGenerateColumns="False" IsReadOnly="False"
+                          AddingNewItem="True"
+                          AllowDrop="True">
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tytuł filmu" Binding="{Binding Nazwa}"/>
+                    <DataGridTextColumn Header="Ocena" Binding="{Binding Ocena}"/>
+                    <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+                
+        </TabControl>
+    </Grid>
+</Window>
